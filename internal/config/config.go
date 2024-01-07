@@ -3,9 +3,12 @@ package config
 import "skeleton/internal/settings"
 
 type Config struct {
+	EnvType settings.EnvType
+
 	ServerPort string
-	DbConnStr  string
-	EnvType    settings.EnvType
+
+	DbConnStr string
+	Dialect   settings.DBType
 }
 
 func Load() (*Config, error) {

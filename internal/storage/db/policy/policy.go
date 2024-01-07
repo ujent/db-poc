@@ -1,8 +1,10 @@
 package policy
 
+import "database/sql"
+
 type Policies interface {
-	AddPolicy(*Policy) error
-	Policies() ([]*Policy, error)
+	AddPolicy(*sql.Tx, *Policy) error
+	Policies(*sql.Tx) ([]*Policy, error)
 }
 
 type Policy struct {
@@ -12,10 +14,10 @@ type Policy struct {
 type PolicyStorage struct {
 }
 
-func (st *PolicyStorage) AddPolicy(*Policy) error {
+func (st *PolicyStorage) AddPolicy(*sql.Tx, *Policy) error {
 	return nil
 }
 
-func (st *PolicyStorage) Policies() ([]*Policy, error) {
+func (st *PolicyStorage) Policies(*sql.Tx) ([]*Policy, error) {
 	return nil, nil
 }

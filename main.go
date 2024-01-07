@@ -18,11 +18,13 @@ func main() {
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
-	st, err := storage.NewStorage(&contract.Settings{})
+	st, err := storage.NewStorage(&contract.Settings{ConnStr: conf.DbConnStr, Dialect: conf.Dialect})
 	if err != nil {
 		logger.Error(err.Error())
 		panic(err)
 	}
+
+	defer st.Close()
 
 	serv, err := NewServer(&settings.ServerSettings{Port: conf.ServerPort, EnvType: conf.EnvType}, logger, st)
 	if err != nil {

@@ -7,6 +7,8 @@ import (
 	"skeleton/internal/storage/db/dialect/mysql"
 	"skeleton/internal/storage/db/dialect/postgres"
 	"skeleton/internal/storage/db/dialect/sqlite"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func NewStorage(s *contract.Settings) (contract.Storage, error) {
