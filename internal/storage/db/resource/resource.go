@@ -1,10 +1,13 @@
 package resource
 
-import "database/sql"
+import (
+	"context"
+	"database/sql"
+)
 
 type Resources interface {
-	AddResource(*sql.Tx, *Resource) error
-	Resourcies(*sql.Tx) ([]*Resource, error)
+	AddResource(context.Context, *sql.Tx, *Resource) error
+	Resourcies(context.Context, *sql.Tx) ([]*Resource, error)
 }
 
 type Resource struct {
@@ -13,10 +16,10 @@ type Resource struct {
 
 type ResourceStorage struct{}
 
-func (st *ResourceStorage) AddResource(*sql.Tx, *Resource) error {
+func (st *ResourceStorage) AddResource(context.Context, *sql.Tx, *Resource) error {
 	return nil
 }
 
-func (st *ResourceStorage) Resourcies(*sql.Tx) ([]*Resource, error) {
+func (st *ResourceStorage) Resourcies(context.Context, *sql.Tx) ([]*Resource, error) {
 	return nil, nil
 }

@@ -27,12 +27,12 @@ func TestAddPolicy(t *testing.T) {
 
 	defer tx.Rollback()
 
-	err = st.AddPolicy(tx, &policy.Policy{})
+	err = st.AddPolicy(ctx, tx, &policy.Policy{})
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	err = st.AddResource(tx, &resource.Resource{})
+	err = st.AddResource(ctx, tx, &resource.Resource{})
 	if err != nil {
 		t.Fatal(err)
 	}
