@@ -6,8 +6,8 @@ import (
 	"os"
 	"skeleton/internal/config"
 	"skeleton/internal/settings"
-	storage "skeleton/internal/storage/db"
 	"skeleton/internal/storage/db/contract"
+	"skeleton/internal/storage/db/storage"
 )
 
 func main() {
@@ -39,4 +39,6 @@ func main() {
 		logger.Error(err.Error())
 		panic(err)
 	}
+
+	defer serv.Stop(ctx)
 }
