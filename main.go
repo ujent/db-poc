@@ -10,7 +10,9 @@ import (
 	"skeleton/internal/storage/db/storage"
 )
 
+// точка сборки приложения
 func main() {
+	// читаем конфиг
 	conf, err := config.Load()
 	if err != nil {
 		panic(err)
@@ -18,6 +20,7 @@ func main() {
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
+	//в зависимости от используемой БД создаем storage
 	st, err := storage.NewStorage(&contract.Settings{ConnStr: conf.DbConnStr, Dialect: conf.Dialect})
 	if err != nil {
 		logger.Error(err.Error())
